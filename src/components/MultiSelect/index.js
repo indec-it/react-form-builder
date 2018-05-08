@@ -41,15 +41,16 @@ const MultiSelect = ({
     <Row className={classNames('', {disabled})}>
         {question.text && <TextWithBadge question={question}/>}
         {question.options.map(option => (option.text ?
-            option.text :
-            (<Checkbox
-                key={option.value}
-                title={option.label}
-                onChange={() => handleChangeAnswer(question, option, answer, onChange)}
-                checked={includes(answer, option.value)}
-                disabled={disabled}
-            />
-            )
+            option.text : (
+                <Checkbox
+                    key={option.value}
+                    title={option.label}
+                    onChange={() => handleChangeAnswer(question, option, answer, onChange)}
+                    checked={includes(answer, option.value)}
+                    disabled={disabled}
+                >
+                    {option.label}
+                </Checkbox>)
         ))}
     </Row>
 );

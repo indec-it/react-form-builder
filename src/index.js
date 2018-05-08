@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ComponentsRegistry from './ComponentsRegistry';
-import {questionPropType} from './util';
-
-
-import canAnswerQuestion from '../../util/canAnswerQuestion';
+import {questionPropType, canAnswerQuestion} from './util';
 
 const QuestionsDrawer = ({
     questionAnswer, question, onChange, disabled, chapter
