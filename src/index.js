@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import ComponentsRegistry from './ComponentsRegistry';
 import {questionPropType} from './util';
 
-
-import canAnswerQuestion from '../../util/canAnswerQuestion';
-
 const QuestionsDrawer = ({
     questionAnswer, question, onChange, disabled, chapter
 }) => {
@@ -19,7 +16,7 @@ const QuestionsDrawer = ({
             section={chapter}
             answer={questionAnswer}
             onChange={answer => onChange(answer)}
-            disabled={disabled || !canAnswerQuestion(question, chapter)}
+            disabled={disabled}
         />
     );
 };

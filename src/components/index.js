@@ -1,4 +1,3 @@
-import AddOnList from './AddOnList';
 import Calc from './Calc';
 import CheckBox from './CheckBox';
 import DateInput from './DateInput';
@@ -19,7 +18,6 @@ import Title from './Title';
 import Sum from './Sum';
 import YesNoButtons from './YesNoButtons';
 
-export {AddOnList};
 export {Calc};
 export {CheckBox};
 export {DateInput};
