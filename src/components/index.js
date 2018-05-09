@@ -1,10 +1,10 @@
-import AddOnList from './AddOnList';
 import Calc from './Calc';
 import CheckBox from './CheckBox';
 import DateInput from './DateInput';
 import DecimalInput from './DecimalInput';
 import DecimalInputOrIgnore from './DecimalInputOrIgnore';
 import MultiSelect from './MultiSelect';
+import PlainResponse from './PlainResponse';
 import Radio from './Radio';
 import RadioSections from './RadioSections';
 import RadioTable from './RadioTable';
@@ -19,13 +19,13 @@ import Title from './Title';
 import Sum from './Sum';
 import YesNoButtons from './YesNoButtons';
 
-export {AddOnList};
 export {Calc};
 export {CheckBox};
 export {DateInput};
 export {DecimalInput};
 export {DecimalInputOrIgnore};
 export {MultiSelect};
+export {PlainResponse};
 export {Radio};
 export {RadioSections};
 export {RadioTable};

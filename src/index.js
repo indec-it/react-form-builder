@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import ComponentsRegistry from './ComponentsRegistry';
 import {questionPropType} from './util';
 
-
-import canAnswerQuestion from '../../util/canAnswerQuestion';
-
-const QuestionsDrawer = ({
-    questionAnswer, question, onChange, disabled, chapter
+const FormBuilder = ({
+    questionAnswer, question, onChange, disabled, chapter, plainAnswers
 }) => {
     const registry = new ComponentsRegistry();
-    const QuestionComponent = registry.get(question.type);
+    const QuestionComponent = plainAnswers ? registry.get('plainResponse') : registry.get(question.type);
 
     return (
         <QuestionComponent
@@ -19,24 +16,26 @@ const QuestionsDrawer = ({
             section={chapter}
             answer={questionAnswer}
             onChange={answer => onChange(answer)}
-            disabled={disabled || !canAnswerQuestion(question, chapter)}
+            disabled={disabled}
         />
     );
 };
 
-QuestionsDrawer.propTypes = {
+FormBuilder.propTypes = {
     question: PropTypes.instanceOf(questionPropType).isRequired,
     disabled: PropTypes.bool.isRequired,
     chapter: PropTypes.shape({}).isRequired,
     questionAnswer: PropTypes.oneOfType([
         PropTypes.any
     ]),
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    plainAnswers: PropTypes.bool
 };
 
-QuestionsDrawer.defaultProps = {
+FormBuilder.defaultProps = {
     questionAnswer: null,
-    onChange: null
+    onChange: null,
+    plainAnswers: false
 };
 
-export default QuestionsDrawer;
+export default FormBuilder;
