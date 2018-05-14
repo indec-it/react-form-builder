@@ -69,7 +69,7 @@ const YesNoButtons = ({
             />}
             <Row>
                 <ButtonGroup
-                    onPress={index => handleChange(question.name, getValue(index, question), onChange)}
+                    onClick={index => handleChange(question.name, getValue(index, question), onChange)}
                     selectedIndex={getSelectedValue(answer, question)}
                     buttons={buttons}
                     disabled={disabled}

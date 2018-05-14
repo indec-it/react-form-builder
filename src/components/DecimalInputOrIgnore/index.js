@@ -45,7 +45,7 @@ const DecimalInputOrIgnore = ({
                 </Fragment>
             )}
             <Checkbox
-                onPress={() => handlePress(question, answer, onChange)}
+                onChange={() => handlePress(question, answer, onChange)}
                 checked={isIgnored(question, answer)}
             />
         </Row>

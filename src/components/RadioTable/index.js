@@ -22,7 +22,7 @@ const renderRowQuestion = (question, section, rowQuestion, onChange, disabled) =
                     key={option.id}
                 >
                     <Radio
-                        onPress={() => handleChange(questionName, option.value, onChange)}
+                        onChange={() => handleChange(questionName, option.value, onChange)}
                         checked={isEqual(questionValue, option.value)}
                         disabled={disabled}
                     >

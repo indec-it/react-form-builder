@@ -23,7 +23,7 @@ const RadioButton = ({
                 <Radio
                     key={option.value}
                     title={option.label}
-                    onPress={() => handleChange(question.name, option.value, onChange)}
+                    onChange={() => handleChange(question.name, option.value, onChange)}
                     checked={isEqual(answer, option.value)}
                     disabled={disabled}
                 >

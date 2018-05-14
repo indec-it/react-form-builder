@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import './sass/app.scss';
 import ComponentsRegistry from './ComponentsRegistry';
 import {questionPropType} from './util';
 
@@ -8,7 +10,6 @@ const FormBuilder = ({
 }) => {
     const registry = new ComponentsRegistry();
     const QuestionComponent = plainAnswers ? registry.get('plainResponse') : registry.get(question.type);
-
     return (
         <QuestionComponent
             key={question.number}

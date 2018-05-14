@@ -17,7 +17,7 @@ const CheckBox = ({
         />}
         <Checkbox
             title={question.checkBoxTitle}
-            onPress={() => handleChange(question.name, !answer, onChange)}
+            onChange={() => handleChange(question.name, !answer, onChange)}
             checked={answer}
             disabled={disabled}
         />
