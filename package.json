@@ -7,10 +7,12 @@
   "scripts": {
     "test": "eslint ./",
     "precommit": "npm test",
-    "commitmsg": "commitlint -e"
+    "commitmsg": "commitlint -e",
+    "start": "node examples.js"
   },
   "dependencies": {
     "rc-time-picker": "^3.3.1",
+    "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-date-picker": "github:maxaggedon/react-bootstrap-date-picker"
   },
@@ -21,20 +23,41 @@
     "babel-jest": "^22.4.1",
     "babel-loader": "^7.1.3",
     "babel-plugin-lodash": "^3.3.2",
-    "babel-preset-react-native": "^4.0.0",
+    "babel-preset-react-app": "^3.1.1",
+    "bootstrap-sass": "^3.3.7",
+    "case-sensitive-paths-webpack-plugin": "^2.1.2",
+    "compression": "^1.7.2",
+    "connect": "^3.6.6",
+    "css-hot-loader": "^1.3.9",
+    "css-loader": "^0.28.9",
     "eslint": "4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "file-loader": "^1.1.11",
+    "file-saver": "^1.3.3",
+    "friendly-errors-webpack-plugin": "^1.1.3",
     "husky": "^0.14.3",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.7.2",
     "prop-types": "^15.6.1",
-    "react-fontawesome": "1.6.1"
+    "react-dom": "^16.2.0",
+    "react-fontawesome": "1.6.1",
+    "react-hot-loader": "^4.1.2",
+    "react-router-dom": "^4.2.2",
+    "sass-loader": "^7.0.1",
+    "serve-static": "^1.13.2",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.6.0",
+    "webpack-dev-middleware": "^3.1.3",
+    "webpack-hot-middleware": "^2.22.1",
+    "webpack-stream": "^4.0.3",
+    "winston": "^2.4.2"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "react": "^>=16.2.0",
     "rc-time-picker": "^3.3.1",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-date-picker": "github:maxaggedon/react-bootstrap-date-picker"

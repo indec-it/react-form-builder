@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Checkbox, Row, Grid, ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {Checkbox, Row, Col, ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 import classNames from 'classnames';
 
 import {TextWithBadge} from '..';
@@ -15,11 +15,14 @@ const isIgnored = ({ignoreValue}, answer) => answer === ignoreValue;
 const DecimalInputOrIgnore = ({
     answer, question, onChange, disabled
 }) => (
-    <Grid className={classNames('', {disabled})}>
-        {question.text && <TextWithBadge
-            question={question}
-        />}
-        <Row>
+    <Row className={classNames('height-component-separation', {disabled})}>
+        <Col sm={7}>
+            {question.text && <TextWithBadge
+                question={question}
+            />}
+        </Col>
+        <Col sm={5}>
+
             {isIgnored(question, answer) ? '(Deshabilitado)' : (
                 <Fragment>
                     <FormGroup>
@@ -45,11 +48,13 @@ const DecimalInputOrIgnore = ({
                 </Fragment>
             )}
             <Checkbox
-                onPress={() => handlePress(question, answer, onChange)}
+                onChange={() => handlePress(question, answer, onChange)}
                 checked={isIgnored(question, answer)}
-            />
-        </Row>
-    </Grid>
+            >
+                <div className="label-checkbox-radio">Ignorar</div>
+            </Checkbox>
+        </Col>
+    </Row>
 );
 
 DecimalInputOrIgnore.displayName = 'decimalInputOrIgnore';
