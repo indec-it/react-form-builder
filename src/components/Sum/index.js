@@ -33,7 +33,7 @@ const getSum = (section, {name, fieldsToAdd}, onChange) => {
 const Sum = ({
     section, question, onChange, disabled
 }) => (
-    <Row className={classNames('', {disabled})}>
+    <Row className={classNames('sum-question', {'question-disabled': disabled})}>
         {question.text &&
             <TextWithBadge
                 question={question}

@@ -10,7 +10,7 @@ const getBadge = number => {
     const parsedNumber = toString(number);
     return (
         !includes(parsedNumber, '.') ? (
-            <Badge>
+            <Badge className="badge">
                 {number}
             </Badge>
         ) : (
@@ -24,10 +24,10 @@ const getBadge = number => {
 };
 
 const TextWithBadge = ({question: {number, text, infoAfterText}, disabled}) => (
-    <Row className={classNames('', {disabled})}>
+    <Row className={classNames('', {'question-disabled': disabled})}>
         {number && getBadge(number)}
-        <span>
-            {text}
+        <span className="title-badge">
+            &nbsp; {text}
         </span>
         {infoAfterText && <TextBox text={infoAfterText}/>}
     </Row>

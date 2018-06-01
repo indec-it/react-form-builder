@@ -9,7 +9,7 @@ import {handleChange} from '../../util';
 const SelectComponent = ({
     answer, question, onChange, disabled
 }) => (
-    <Row className={classNames('', {disabled})}>
+    <Row className={classNames('select-question', {'question-disabled': disabled})}>
         {question.text && <TextWithBadge
             question={question}
         />}

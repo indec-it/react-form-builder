@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, Checkbox} from 'react-bootstrap';
+import {Row, Col, Checkbox} from 'react-bootstrap';
 import {concat, includes, isNil, filter, map, reject} from 'lodash';
 import classNames from 'classnames';
 
@@ -38,20 +38,27 @@ const handleChangeAnswer = (question, option, answer, onChange) => {
 const MultiSelect = ({
     answer, question, onChange, disabled
 }) => (
-    <Row className={classNames('', {disabled})}>
-        {question.text && <TextWithBadge question={question}/>}
-        {question.options.map(option => (option.text ?
-            option.text : (
-                <Checkbox
-                    key={option.value}
-                    title={option.label}
-                    onChange={() => handleChangeAnswer(question, option, answer, onChange)}
-                    checked={includes(answer, option.value)}
-                    disabled={disabled}
-                >
-                    {option.label}
-                </Checkbox>)
-        ))}
+
+    <Row className={classNames('height-question-separation', 'multiselect-question', {'question-disabled': disabled})}>
+        <Col sm={7}>
+            {question.text && <TextWithBadge
+                question={question}
+            />}
+        </Col>
+        <Col sm={5}>
+            {question.options.map(option => (option.text ?
+                option.text : (
+                    <Checkbox
+                        key={option.value}
+                        title={option.label}
+                        onChange={() => handleChangeAnswer(question, option, answer, onChange)}
+                        checked={includes(answer, option.value)}
+                        disabled={disabled}
+                    >
+                        <div className="label-checkbox-radio">{option.label}</div>
+                    </Checkbox>)
+            ))}
+        </Col>
     </Row>
 );
 
