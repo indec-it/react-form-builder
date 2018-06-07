@@ -54,7 +54,7 @@ export default class ReviewsUtilities {
         if (question.type === types.YES_NO_BUTTONS) {
             return (
                 <Fragment>
-                    {chapter[question.name] && (<b className="text-success">SI</b>)}
+                    {chapter[question.name] === question.trueValue && (<b className="text-success">SI</b>)}
                     {!chapter[question.name] && <b className="text-danger">No</b>}
                 </Fragment>
             );
