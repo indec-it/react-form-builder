@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, ControlLabel, FormControl, FormGroup, Grid} from 'react-bootstrap';
+import {Row, Col, ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 import classNames from 'classnames';
 
 import {getInputValue, handleChangeText} from '../../util';
@@ -9,11 +9,13 @@ import {TextWithBadge} from '..';
 const TextInput = ({
     answer, question, onChange, disabled
 }) => (
-    <Grid className={classNames('', {disabled})}>
-        <Row>
+    <Row className={classNames('height-component-separation', {disabled})}>
+        <Col sm={7}>
             {question.text && <TextWithBadge
                 question={question}
             />}
+        </Col>
+        <Col sm={5}>
             <FormGroup>
                 {question.floatingLabel && (
                     <ControlLabel>{question.floatingLabel}</ControlLabel>)
@@ -33,8 +35,8 @@ const TextInput = ({
                     {question.textAfterInput}
                 </p>)
             }
-        </Row>
-    </Grid>
+        </Col>
+    </Row>
 );
 
 TextInput.displayName = 'textInput';

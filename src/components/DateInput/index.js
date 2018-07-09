@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, Grid} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 import classNames from 'classnames';
+
 import {TextWithBadge} from '..';
 import {handleChange} from '../../util';
 
@@ -12,11 +13,13 @@ const DateInput = ({
     onChange,
     disabled
 }) => (
-    <Grid className={classNames('', {disabled})}>
-        <Row>
+    <Row className={classNames('height-component-separation', {disabled})}>
+        <Col sm={7}>
             {question.text && <TextWithBadge
                 question={question}
             />}
+        </Col>
+        <Col sm={5}>
             <DatePicker
                 date={answer}
                 placeholder={question.placeholder}
@@ -28,8 +31,8 @@ const DateInput = ({
                 onChange={date => handleChange(question.name, date, onChange)}
                 disabled={disabled}
             />
-        </Row>
-    </Grid>
+        </Col>
+    </Row>
 );
 DateInput.displayName = 'dateInput';
 DateInput.propTypes = {

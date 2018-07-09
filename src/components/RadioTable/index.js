@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Grid, Radio} from 'react-bootstrap';
+import {Row, Col, Radio} from 'react-bootstrap';
 import {isEqual} from 'lodash';
 import classNames from 'classnames';
 
@@ -11,41 +11,40 @@ const renderRowQuestion = (question, section, rowQuestion, onChange, disabled) =
     const questionName = question.name + rowQuestion.name;
     const questionValue = section[questionName];
     return (
-        <Row key={questionName}>
-            <Col size={4}>
-                <span>
-                    {rowQuestion.text}
-                </span>
-            </Col>
+        <div key={questionName}>
+            <span>
+                {rowQuestion.text}
+            </span>
             {question.options.map(option => (
-                <Col
-                    key={option.id}
-                >
+                <Fragment>
+                    <span className="label-checkbox-radio margin-yes-no">{option.text}</span>
                     <Radio
-                        onPress={() => handleChange(questionName, option.value, onChange)}
+                        onChange={() => handleChange(questionName, option.value, onChange)}
                         checked={isEqual(questionValue, option.value)}
                         disabled={disabled}
-                    >
-                        {option.text}
-                    </Radio>
-                </Col>
+                        className="radio-table-inline"
+                    />
+                </Fragment>
             ))}
-        </Row>
+        </div>
     );
 };
 
 const RadioTable = ({
     section, question, onChange, disabled
 }) => (
-    <Row className={classNames('', {disabled})}>
-        {question.text && <TextWithBadge
-            question={question}
-        />}
-        <Grid>
+
+    <Row className={classNames('height-component-separation', {disabled})}>
+        <Col sm={7}>
+            {question.text && <TextWithBadge
+                question={question}
+            />}
+        </Col>
+        <Col sm={5}>
             {question.questions.map(rowQuestion => (
                 renderRowQuestion(question, section, rowQuestion, onChange, disabled)
             ))}
-        </Grid>
+        </Col>
     </Row>
 );
 
