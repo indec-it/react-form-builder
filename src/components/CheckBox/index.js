@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, Checkbox} from 'react-bootstrap';
+import {Row, Col, Checkbox} from 'react-bootstrap';
 import classNames from 'classnames';
 import {TextWithBadge} from '..';
 import {handleChange} from '../../util';
@@ -11,16 +11,21 @@ const CheckBox = ({
     question,
     disabled
 }) => (
-    <Row className={classNames('', {disabled})}>
-        {question.text && <TextWithBadge
-            question={question}
-        />}
-        <Checkbox
-            title={question.checkBoxTitle}
-            onPress={() => handleChange(question.name, !answer, onChange)}
-            checked={answer}
-            disabled={disabled}
-        />
+
+    <Row className={classNames('height-question-separation', 'checkbox-question', {'question-disabled': disabled})}>
+        <Col sm={7}>
+            {question.text && <TextWithBadge
+                question={question}
+            />}
+        </Col>
+        <Col sm={5} className="text-right">
+            <Checkbox
+                title={question.checkBoxTitle}
+                onChange={() => handleChange(question.name, !answer, onChange)}
+                checked={answer}
+                disabled={disabled}
+            />
+        </Col>
     </Row>
 );
 CheckBox.displayName = 'checkbox';

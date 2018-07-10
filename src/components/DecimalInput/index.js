@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, ControlLabel, FormControl, FormGroup, Grid} from 'react-bootstrap';
+import {Row, ControlLabel, FormControl, FormGroup, Col} from 'react-bootstrap';
 import classNames from 'classnames';
 import {TextWithBadge} from '..';
 import {getInputValue, handleChangeNumber} from '../../util';
@@ -11,11 +11,14 @@ const DecimalInput = ({
     onChange,
     disabled
 }) => (
-    <Grid className={classNames('', {disabled})}>
-        <Row>
+
+    <Row className={classNames('height-question-separation', 'decimal-question', {'question-disabled': disabled})}>
+        <Col sm={7}>
             {question.text && <TextWithBadge
                 question={question}
             />}
+        </Col>
+        <Col sm={5}>
             <FormGroup>
                 {question.floatingLabel && (
                     <ControlLabel>{question.floatingLabel}</ControlLabel>)
@@ -36,8 +39,8 @@ const DecimalInput = ({
             <p>
                 {question.textAfterInput}
             </p>}
-        </Row>
-    </Grid>
+        </Col>
+    </Row>
 );
 DecimalInput.displayName = 'decimalInput';
 DecimalInput.propTypes = {

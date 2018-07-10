@@ -10,7 +10,7 @@ import {handleChange} from '../../util';
 const RadioSections = ({
     answer, question, onChange, disabled
 }) => (
-    <Row className={classNames('', {disabled})}>
+    <Row className={classNames('radio-question', {'question-disabled': disabled})}>
         {question.text && <TextWithBadge
             question={question}
         />}
@@ -25,7 +25,7 @@ const RadioSections = ({
                 <Radio
                     key={option.value}
                     title={option.label}
-                    onPress={() => handleChange(question.name, option.value, onChange)}
+                    onChange={() => handleChange(question.name, option.value, onChange)}
                     checked={isEqual(answer, option.value)}
                     disabled={disabled}
                 >
