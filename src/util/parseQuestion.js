@@ -8,7 +8,7 @@ export default class ReviewsUtilities {
         if (!value) {
             return null;
         }
-        return find(options, o => parseInt(o.value, 10) === value);
+        return find(options, o => parseInt(o.value, 10) === parseInt(value, 10));
     }
 
     static convertBooleanToString(value) {
@@ -21,6 +21,16 @@ export default class ReviewsUtilities {
     }
 
     static parseQuestion(question, chapter) {
+        if (question.type === types.SELECT) {
+            const questionValue = this.getOption(
+                question.options, chapter[question.name]
+            );
+            return questionValue && (
+                <span key={`${question.name}${questionValue.text}`}>
+                    {questionValue.label} ({questionValue.value})<br/>
+                </span>);
+        }
+
         if (question.type === types.RADIO_TABLE) {
             return (
                 <Fragment>
@@ -38,6 +48,7 @@ export default class ReviewsUtilities {
                 </Fragment>
             );
         }
+
         if (question.type === types.MULTI_SELECT) {
             return (
                 <Fragment>
@@ -64,6 +75,7 @@ export default class ReviewsUtilities {
             const q = this.getOption(question.options, chapter[question.name]);
             return q ? `${q.label} (${q.value})` : null;
         }
+
         if (question.type === types.CHECKBOX) {
             if (chapter[question.name]) {
                 return (<FontAwesome name="check-circle"/>);
@@ -71,9 +83,11 @@ export default class ReviewsUtilities {
 
             return null;
         }
+
         if (question.trueValue) {
             return this.convertBooleanToString(chapter[question.name]);
         }
+
         return question.name && chapter[question.name];
     }
 }
