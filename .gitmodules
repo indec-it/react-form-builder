@@ -1,0 +1,3 @@
+[submodule "react-form-builder-example"]
+	path = react-form-builder-example
+	url = git@github.com:indec-it/react-form-builder-example.git
