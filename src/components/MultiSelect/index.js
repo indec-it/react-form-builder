@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Row, Col, Checkbox} from 'react-bootstrap';
 import {concat, includes, isNil, filter, map, reject} from 'lodash';
 import classNames from 'classnames';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheckCircle} from '@fortawesome/free-regular-svg-icons';
 
 import {TextWithBadge} from '..';
 import {handleChange} from '../../util';
@@ -36,7 +38,7 @@ const handleChangeAnswer = (question, option, answer, onChange) => {
 };
 
 const MultiSelect = ({
-    answer, question, onChange, disabled
+    answer, question, onChange, disabled, plainResponse
 }) => (
 
     <Row className={classNames('height-question-separation', 'multiselect-question', {'question-disabled': disabled})}>
@@ -46,7 +48,14 @@ const MultiSelect = ({
             />}
         </Col>
         <Col sm={5}>
-            {question.options.map(option => (option.text ?
+            {plainResponse &&
+                map(question.options, option => includes(answer, option.value) && (
+                    <div key={`${question.name}${option.label}`}>
+                        {option.label} <FontAwesomeIcon icon={faCheckCircle}/>
+                    </div>)
+                )
+            }
+            {!plainResponse && question.options.map(option => (option.text ?
                 option.text : (
                     <Checkbox
                         key={option.value}
@@ -66,17 +75,20 @@ MultiSelect.displayName = 'multiSelect';
 
 MultiSelect.propTypes = {
     question: questionPropType.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     answer: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    plainResponse: PropTypes.bool
 };
 
 MultiSelect.defaultProps = {
+    onChange: null,
     answer: null,
-    disabled: false
+    disabled: false,
+    plainResponse: false
 };
 
 export default MultiSelect;

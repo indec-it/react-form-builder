@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Row, ControlLabel, FormControl, FormGroup, Col} from 'react-bootstrap';
 import classNames from 'classnames';
@@ -9,7 +9,8 @@ const DecimalInput = ({
     answer,
     question,
     onChange,
-    disabled
+    disabled,
+    plainResponse
 }) => (
 
     <Row className={classNames('height-question-separation', 'decimal-question', {'question-disabled': disabled})}>
@@ -23,37 +24,49 @@ const DecimalInput = ({
                 {question.floatingLabel && (
                     <ControlLabel>{question.floatingLabel}</ControlLabel>)
                 }
-                <FormControl
-                    type="number"
-                    value={getInputValue(answer)}
-                    required
-                    min={question.min}
-                    max={question.max}
-                    maxLength={question.maxLength}
-                    onChange={text => handleChangeNumber(question, text, onChange)}
-                    disabled={disabled}
-                />
-                <FormControl.Feedback/>
+                {plainResponse && <strong>&nbsp;{answer}</strong>}
+                {!plainResponse && (
+                    <Fragment>
+                        <FormControl
+                            type="number"
+                            value={getInputValue(answer)}
+                            required
+                            min={question.min}
+                            max={question.max}
+                            maxLength={question.maxLength}
+                            onChange={text => handleChangeNumber(question, text, onChange)}
+                            disabled={disabled}
+                        />
+                        <FormControl.Feedback/>
+                    </Fragment>)
+                }
             </FormGroup>
             {question.textAfterInput &&
-            <p>
-                {question.textAfterInput}
-            </p>}
+            <span>
+                &nbsp;{question.textAfterInput}&nbsp;
+            </span>}
         </Col>
     </Row>
 );
+
 DecimalInput.displayName = 'decimalInput';
+
 DecimalInput.propTypes = {
     question: PropTypes.shape({}).isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     answer: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    plainResponse: PropTypes.bool
 };
+
 DecimalInput.defaultProps = {
+    onChange: null,
     answer: null,
-    disabled: false
+    disabled: false,
+    plainResponse: false
 };
+
 export default DecimalInput;

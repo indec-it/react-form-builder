@@ -7,7 +7,7 @@ import {getInputValue, handleChangeText} from '../../util';
 import {TextWithBadge} from '..';
 
 const TextInput = ({
-    answer, question, onChange, disabled
+    answer, question, onChange, disabled, plainResponse
 }) => (
     <Row className={classNames('height-question-separation', 'textinput-question', {'question-disabled': disabled})}>
         <Col sm={7}>
@@ -20,14 +20,17 @@ const TextInput = ({
                 {question.floatingLabel && (
                     <ControlLabel>{question.floatingLabel}</ControlLabel>)
                 }
-                <FormControl
-                    type="text"
-                    value={getInputValue(answer)}
-                    required
-                    maxLength={question.maxLength}
-                    onChange={text => handleChangeText(question.name, text, onChange)}
-                    disabled={disabled}
-                />
+                {plainResponse && <strong>{answer}</strong>}
+                {!plainResponse && (
+                    <FormControl
+                        type="text"
+                        value={getInputValue(answer)}
+                        required
+                        maxLength={question.maxLength}
+                        onChange={text => handleChangeText(question.name, text, onChange)}
+                        disabled={disabled}
+                    />)
+                }
                 <FormControl.Feedback/>
             </FormGroup>
             {question.textAfterInput && (
@@ -43,14 +46,17 @@ TextInput.displayName = 'textInput';
 
 TextInput.propTypes = {
     question: PropTypes.shape({}).isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     answer: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    plainResponse: PropTypes.bool
 };
 
 TextInput.defaultProps = {
+    onChange: null,
     answer: null,
-    disabled: false
+    disabled: false,
+    plainResponse: false
 };
 
 export default TextInput;

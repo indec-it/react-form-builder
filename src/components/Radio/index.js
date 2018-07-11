@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Radio} from 'react-bootstrap';
-import {isEqual} from 'lodash';
+import {isEmpty, isEqual, map} from 'lodash';
 import classNames from 'classnames';
 
 import {TextWithBadge} from '..';
-import {handleChange} from '../../util';
+import {getSelectedValue, handleChange} from '../../util';
+
+const drawAnswer = (answer, options) => {
+    const answered = getSelectedValue(options, answer);
+    if (answered && !isEmpty(answered)) {
+        return answered.label;
+    }
+    return null;
+};
 
 const RadioButton = ({
-    answer, question, onChange, disabled
+    answer, question, onChange, disabled, plainResponse
 }) => (
-
     <Row className={classNames('height-question-separation', 'radio-question', {'question-disabled': disabled})}>
         <Col sm={7}>
             {question.text && <TextWithBadge
@@ -18,7 +25,12 @@ const RadioButton = ({
             />}
         </Col>
         <Col sm={5}>
-            {question.options.map(
+            {plainResponse && answer && (
+                <Fragment>
+                    &nbsp;{drawAnswer(answer, question.options)}
+                </Fragment>)
+            }
+            {!plainResponse && map(question.options,
                 option => (option.text ? (
                     <span key={option.text}>
                         {option.text}
@@ -31,7 +43,7 @@ const RadioButton = ({
                         checked={isEqual(answer, option.value)}
                         disabled={disabled}
                     >
-                        <div className="label-checkbox-radio">{option.label}</div>
+                        <span className="label-checkbox-radio">{option.label}</span>
                     </Radio>
                 ))
             )}
@@ -43,17 +55,21 @@ RadioButton.displayName = 'radio';
 
 RadioButton.propTypes = {
     question: PropTypes.shape({}).isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     answer: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    plainResponse: PropTypes.bool
 };
 
 RadioButton.defaultProps = {
+    onChange: null,
     answer: null,
-    disabled: false
+    disabled: false,
+    plainResponse: false
 };
+
 
 export default RadioButton;

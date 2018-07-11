@@ -16,6 +16,11 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^6.1.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-brands-svg-icons": "^5.2.0",
+    "@fortawesome/free-regular-svg-icons": "^5.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.1",
@@ -29,15 +34,21 @@
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
     "prop-types": "^15.6.1",
+    "react": "^16.4.1",
     "react-fontawesome": "1.6.1"
   },
   "peerDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-brands-svg-icons": "^5.2.0",
+    "@fortawesome/free-regular-svg-icons": "^5.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.0",
+    "bootstrap-sass": "^3.3.7",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "react": "^>=16.2.0",
     "rc-time-picker": "^3.3.1",
+    "react": "^>=16.2.0",
     "react-bootstrap": "^0.32.1",
-    "bootstrap-sass": "^3.3.7",
     "react-bootstrap-date-picker": "github:maxaggedon/react-bootstrap-date-picker"
   },
   "keywords": [
