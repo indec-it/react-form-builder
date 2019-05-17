@@ -1,6 +1,6 @@
 {
   "name": "@indec/react-form-builder",
-  "version": "0.2.3",
+  "version": "0.1.0",
   "description": "A library to generate forms in react based on a json description",
   "private": false,
   "main": "src/index.js",
